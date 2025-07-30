@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from models.detection import run_object_detection
 from models.lane_detection import detect_lanes
 from utils.metadata_simulator import generate_sensor_metadata
+from utils.formatter import format_output
 
 # Load image
 image_path = os.path.join('input', 'arial_2.jpg')
@@ -40,3 +41,14 @@ sensor_data = generate_sensor_metadata()
 print("\nSimulated Metadata:")
 for k, v in sensor_data.items():
     print(f"{k}: {v}")
+
+
+output = format_output(sensor_data, boxes, lanes)
+
+# Optionally convert to JSON
+import json
+with open("output/scene_summary.json", "w") as f:
+    json.dump(output, f, indent=2)
+
+# Or preview in terminal
+print(json.dumps(output, indent=2))
