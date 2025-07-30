@@ -5,6 +5,7 @@ from models.detection import run_object_detection
 from models.lane_detection import detect_lanes
 from utils.metadata_simulator import generate_sensor_metadata
 from utils.formatter import format_output
+from utils.grind_mapper import create_voxel_scene
 
 # Load image
 image_path = os.path.join('input', 'arial_2.jpg')
@@ -52,3 +53,5 @@ with open("output/scene_summary.json", "w") as f:
 
 # Or preview in terminal
 print(json.dumps(output, indent=2))
+
+create_voxel_scene(output)
