@@ -6,6 +6,9 @@ from models.lane_detection import detect_lanes
 from utils.metadata_simulator import generate_sensor_metadata
 from utils.formatter import format_output
 from utils.grind_mapper import create_voxel_scene
+import streamlit as st
+import json
+from PIL import Image
 
 # Load image
 image_path = os.path.join('input', 'arial_2.jpg')
@@ -55,3 +58,37 @@ with open("output/scene_summary.json", "w") as f:
 print(json.dumps(output, indent=2))
 
 create_voxel_scene(output)
+
+
+
+st.set_page_config(page_title="BEV Scene Visualizer", layout="wide")
+st.title("🚗 BEV Modeling Demo")
+
+# Upload image (just for display)
+uploaded_file = st.file_uploader("Upload a BEV-style image (optional)", type=["jpg", "jpeg", "png"])
+if uploaded_file is not None:
+    image = Image.open(uploaded_file)
+    st.image(image, caption="Uploaded Image", use_column_width=True)
+
+st.markdown("### 📂 Load Output File")
+
+# Load your previously saved output
+if st.button("Load and Visualize scene_summary.json"):
+    try:
+        with open("output/scene_summary.json", "r") as f:
+            scene_data = json.load(f)
+
+        st.subheader("📍 Sensor Metadata")
+        st.json(scene_data["sensor_metadata"])
+
+        st.subheader("📦 Detected Objects")
+        st.write(f"Detected {len(scene_data['object_detections'])} objects")
+
+        st.subheader("🛣️ Detected Lane Lines")
+        st.write(f"Detected {len(scene_data['lane_lines'])} lane segments")
+
+        st.subheader("🧱 3D Scene View")
+        create_voxel_scene(scene_data)
+
+    except FileNotFoundError:
+        st.error("scene_summary.json not found. Please run the pipeline first.")

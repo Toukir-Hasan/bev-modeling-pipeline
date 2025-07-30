@@ -1,9 +1,9 @@
 {
   "sensor_metadata": {
-    "vehicle_speed_kmph": 76,
+    "vehicle_speed_kmph": 39,
     "gps": {
-      "lat": 45.500812,
-      "lon": -73.566032
+      "lat": 45.509099,
+      "lon": -73.564889
     },
     "weather": "Rainy",
     "timestamp": "2025-07-30 00:10:00"
