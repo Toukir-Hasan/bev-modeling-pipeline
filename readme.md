@@ -104,14 +104,3 @@ streamlit run app.py
 
 ---
 
-##  Resume Bullet Example
-```
-Built an end-to-end BEV modeling prototype that integrates object & lane detection from aerial views and projects results into a 3D voxel grid; simulated multimodal sensor data (GPS, speed, weather) to mimic real-world autonomous perception pipelines. Modularized components for microservice deployment and visualized via Streamlit and Matplotlib.
-```
-
----
-
-##  Acknowledgements
-- Ultralytics for YOLOv8
-- OpenCV community for vision algorithms
-- Streamlit for an easy-to-use frontend framework
