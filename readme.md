@@ -1,0 +1,1 @@
+Due to YOLOv8 being trained on side-view imagery, detection accuracy on BEV images is limited. This prototype focuses on system architecture, data fusion, and pipeline modularity.
